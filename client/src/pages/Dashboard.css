@@ -1,0 +1,235 @@
+/* ============================================
+   DASHBOARD — Dark Premium Theme
+   ============================================ */
+@import 'react-circular-progressbar/dist/styles.css';
+
+.dashboard-outer {
+  max-width: 1200px;
+  margin: 0 auto;
+  width: 100%;
+  min-width: 0;
+}
+
+.dashboard-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-areas:
+    'growth growth summary1 summary2'
+    'growth growth summary3 summary4'
+    'chart-line chart-line chart-line chart-line'
+    'chart-delta chart-delta chart-sem chart-sem'
+    'goals goals goals goals';
+}
+
+/* --- Base Card --- */
+.dash-card {
+  background: var(--bg-surface);
+  padding: 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-card);
+  transition: var(--transition);
+  min-width: 0;
+}
+
+.dash-card:hover {
+  border-color: var(--border-medium);
+  box-shadow: var(--shadow-glow);
+}
+
+/* --- Grid Areas --- */
+.growth-index-card {
+  grid-area: growth;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background: linear-gradient(145deg, var(--bg-surface), #0A0F1C);
+}
+
+.growth-index-card h2 {
+  color: var(--accent-gold);
+  font-style: italic;
+  font-size: 1.6rem;
+  margin-bottom: 0.5rem;
+}
+
+.progress-bar-container {
+  width: 180px;
+  height: 180px;
+  margin: 1rem 0;
+  flex-shrink: 0;
+}
+
+.summary-card-1 { grid-area: summary1; }
+.summary-card-2 { grid-area: summary2; }
+.summary-card-3 { grid-area: summary3; }
+.summary-card-4 {
+  grid-area: summary4;
+  background: linear-gradient(145deg, var(--bg-surface), #111827);
+  border-style: dashed;
+  border-color: var(--border-medium);
+}
+
+.chart-card-line { grid-area: chart-line; }
+.chart-card-delta { grid-area: chart-delta; }
+.chart-card-sem-delta { grid-area: chart-sem; }
+.todo-preview {
+  grid-area: goals;
+}
+
+.chart-caption {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  margin: -0.35rem 0 0.65rem;
+  line-height: 1.4;
+}
+
+.dash-chart-h {
+  height: 280px;
+  min-height: 200px;
+  position: relative;
+}
+
+.dash-chart-h--sm {
+  height: 220px;
+  min-height: 180px;
+}
+
+/* --- Summary Card Content --- */
+.summary-card {
+  padding: 1rem;
+  text-align: center;
+}
+
+.summary-card h3 {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+}
+
+.summary-card .value {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--accent-gold);
+}
+
+.summary-card .trend {
+  font-size: 0.8rem;
+  font-weight: 500;
+  margin-top: 0.3rem;
+}
+
+.trend-green { color: var(--success); }
+.trend-red { color: var(--danger); }
+
+/* --- Chart Card --- */
+.chart-card-line h3,
+.chart-card-delta h3,
+.chart-card-sem-delta h3 {
+  font-family: var(--font-display);
+  font-size: 1.3rem;
+  color: var(--accent-gold);
+  font-style: italic;
+  margin-bottom: 0.5rem;
+}
+
+/* --- Goals Preview --- */
+.todo-preview h3 {
+  color: var(--accent-gold);
+  margin-bottom: 1rem;
+}
+
+.todo-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bg-primary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.7rem 1rem;
+  border-radius: var(--radius-sm);
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+
+.todo-item:hover {
+  border-color: var(--border-medium);
+}
+
+.todo-item.done {
+  opacity: 0.5;
+  text-decoration: line-through;
+}
+
+/* --- Report Button --- */
+.report-btn {
+  margin-top: 1rem;
+  padding: 0.6rem 1.2rem;
+  background: linear-gradient(135deg, var(--accent-gold), #B8944F);
+  color: var(--bg-primary);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.report-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 15px rgba(201, 169, 110, 0.3);
+}
+
+/* --- Responsive --- */
+@media (max-width: 1200px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-areas:
+      'growth growth'
+      'summary1 summary2'
+      'summary3 summary4'
+      'chart-line chart-line'
+      'chart-delta chart-sem'
+      'goals goals';
+  }
+  .progress-bar-container { width: 150px; height: 150px; }
+}
+
+@media (max-width: 768px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'growth'
+      'summary1'
+      'summary2'
+      'summary3'
+      'summary4'
+      'chart-line'
+      'chart-delta'
+      'chart-sem'
+      'goals';
+    gap: 1rem;
+  }
+  .dash-chart-h {
+    height: 240px;
+  }
+}
+
+@media (max-width: 480px) {
+  .growth-index-card h2 {
+    font-size: 1.35rem;
+  }
+  .summary-card .value {
+    font-size: 1.75rem;
+  }
+  .dash-card {
+    padding: 1rem;
+  }
+}
